@@ -1,0 +1,39 @@
+diff --git a/node_modules/three-stdlib/controls/OrbitControls.js b/node_modules/three-stdlib/controls/OrbitControls.js
+index 896742a..e06cc63 100644
+--- a/node_modules/three-stdlib/controls/OrbitControls.js
++++ b/node_modules/three-stdlib/controls/OrbitControls.js
+@@ -9,6 +9,7 @@ const _ray = new Ray();
+ const _plane = new Plane();
+ const TILT_LIMIT = Math.cos(70 * (Math.PI / 180));
+ const moduloWrapAround = (offset, capacity) => (offset % capacity + capacity) % capacity;
++
+ class OrbitControls extends EventDispatcher {
+   constructor(object, domElement) {
+     super();
+@@ -93,6 +94,7 @@ class OrbitControls extends EventDispatcher {
+     __publicField(this, "update");
+     __publicField(this, "connect");
+     __publicField(this, "dispose");
++    this.passiveWheel=false
+     this.object = object;
+     this.domElement = domElement;
+     this.target0 = this.target.clone();
+@@ -295,7 +297,7 @@ class OrbitControls extends EventDispatcher {
+       scope.domElement.addEventListener("contextmenu", onContextMenu);
+       scope.domElement.addEventListener("pointerdown", onPointerDown);
+       scope.domElement.addEventListener("pointercancel", onPointerCancel);
+-      scope.domElement.addEventListener("wheel", onMouseWheel);
++      scope.domElement.addEventListener("wheel", onMouseWheel, { passive: this.passiveWheel });
+     };
+     this.dispose = () => {
+       var _a, _b, _c, _d, _e, _f;
+@@ -722,7 +724,8 @@ class OrbitControls extends EventDispatcher {
+       if (scope.enabled === false || scope.enableZoom === false || state !== STATE.NONE && state !== STATE.ROTATE) {
+         return;
+       }
+-      event.preventDefault();
++      if (scope.passiveWheel) {
++      event.preventDefault();}
+       scope.dispatchEvent(startEvent);
+       handleMouseWheel(event);
+       scope.dispatchEvent(endEvent);

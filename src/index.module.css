@@ -1,0 +1,74 @@
+@font-face {
+  font-family: 'DinRegular';
+  src: url('./fonts/din-regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DinPro-Regular';
+  src: url('./fonts/DINPro-Regular.otf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DinPro-Medium';
+  src: url('./fonts/DINPro-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --scroll-alpha:0
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif; 
+    max-width:100% ;  
+    user-select:none;
+  }
+   
+  button {
+    border: 0px;
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: 0;
+    font-size: inherit;
+  }
+
+   ::-webkit-scrollbar {
+    width: 8px; /* Set the width of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color:#00000029; /* Custom scrollbar thumb color */ 
+    border-radius: 4px; 
+    -webkit-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #ECE4D8; /* Set the track background */
+  }
+
+    /* Targeting only the horizontal scrollbar thumb */
+    ::-webkit-scrollbar-thumb:horizontal {
+      background: #ECE4D8; /* Set the color for the horizontal scrollbar thumb */
+      border-radius: 4px; /* Optional: Rounded corners for the horizontal scrollbar thumb */
+    }
+  
+    /* Targeting the horizontal scrollbar track */
+    ::-webkit-scrollbar-track:horizontal {
+      background: rgba(0, 0, 0, 0.5); /* Set the track color specifically for horizontal scrollbar */
+    }
+  
+    canvas {
+      position:absolute;
+      overflow:scroll;
+      transition:transform 0.5s;
+    }
